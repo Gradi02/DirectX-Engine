@@ -25,7 +25,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
             DispatchMessageA(&msg);
             if (wnd.kmb.KeyIsPressed(VK_MENU))
             {
-                MessageBox(nullptr, "Smth happen", "Space was clicked", MB_OK | MB_ICONEXCLAMATION);
+                MessageBox(nullptr, "Somthn happen!", "Space was clicked", MB_OK | MB_ICONEXCLAMATION);
             }
         }
 
