@@ -7,6 +7,7 @@
 #include "WinCustomLib.h"
 #include "exceptionsHandler.h"
 #include "Keyboard.h"
+#include "Mouse.h"
 #include <string>
 
 //Declaration of window class
@@ -46,15 +47,17 @@ public:
 	~Window();
 	Window(const Window&) = delete;						//Wy³¹czenie konstruktowa kopiuj¹cego (klasa ma mieæ tylko jedn¹ instancje)
 	Window& operator=(const Window&) = delete;			//Wy³¹czenie operatora '=' dla tej klasy
+	void SetTitle(const std::string ntitle);
 private:
 	static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 	static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 	LRESULT HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 public:
 	Keyboard kmb;
+	Mouse ms;
 private:
-	int width{};
-	int height{};
+	int width;
+	int height;
 	HWND hWnd;
 };
 
