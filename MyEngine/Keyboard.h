@@ -48,7 +48,7 @@ public:
 public:
 	Keyboard() = default;	//deklaracja konstrukora domyœlnego - w zasadzie zbêdna ale warto zaznaczyæ
 	Keyboard(const Keyboard&) = delete;
-	Keyboard operator=(const Keyboard&) = delete;
+	Keyboard& operator=(const Keyboard&) = delete;
 	//Keys events
 	bool KeyIsPressed(unsigned char keycode) const noexcept;
 	Event ReadKey() noexcept;

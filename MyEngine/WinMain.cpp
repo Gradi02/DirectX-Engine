@@ -6,6 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "Window.h"
 #include "exceptionsHandler.h"
+#include <sstream>
 
 
 
@@ -23,9 +24,24 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         {                                                               //wszystkie wiadomoœci z systemu, funkcja zwroci 0 gdy app.quit i -1 gdy error
             TranslateMessage(&msg);
             DispatchMessageA(&msg);
-            if (wnd.kmb.KeyIsPressed(VK_MENU))
+
+            //Test Code
+            if (!wnd.ms.isEmpty())
             {
-                MessageBox(nullptr, "Somthn happen!", "Space was clicked", MB_OK | MB_ICONEXCLAMATION);
+                const auto e = wnd.ms.Read();
+                switch (e.GetType())
+                {
+                case Mouse::Event::Type::Leave:
+                    wnd.SetTitle("Out of window");
+                    break;
+                case Mouse::Event::Type::Move:   
+                    {
+                    std::ostringstream oss;
+                    oss << "Position: " << e.GetPosX() << "; " << e.GetPosY();
+                    wnd.SetTitle(oss.str());
+                    }
+                    break;
+                }
             }
         }
 
