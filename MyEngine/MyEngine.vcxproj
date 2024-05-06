@@ -137,6 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="exceptionsHandler.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
@@ -144,6 +146,8 @@
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="EngineTimer.h" />
     <ClInclude Include="exceptionsHandler.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Mouse.h" />

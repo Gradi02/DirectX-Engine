@@ -118,6 +118,24 @@ LRESULT CALLBACK Window::HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPAR
     return pWnd->HandleMsg(hWnd, msg, wParam, lParam);
 }
 
+std::optional<int> Window::ProcessMessages()
+{
+    MSG msg;
+
+    while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))       //sprawdzam czy jakiœ event z win32 zosta³ pobrany, dwa zera na koncu zwracaj¹ 
+    {                                                               //wszystkie wiadomoœci z systemu, funkcja zwroci 0 gdy app.quit i -1 gdy error
+        if (msg.message == WM_QUIT)
+        {
+            return msg.wParam;
+        }
+        
+        TranslateMessage(&msg);
+        DispatchMessageA(&msg);
+    }
+
+    return{};
+}
+
 LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
     POINTS pt;
@@ -252,6 +270,7 @@ std::string Window::Exceptions::GetErrorString() const noexcept
 {
     return TranslateErrorCode(hr);
 }
+
 
 
 

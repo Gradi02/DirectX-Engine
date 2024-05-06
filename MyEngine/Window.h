@@ -9,6 +9,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include <string>
+#include <optional>
 
 //Declaration of window class
 class Window
@@ -48,6 +49,7 @@ public:
 	Window(const Window&) = delete;						//Wy³¹czenie konstruktowa kopiuj¹cego (klasa ma mieæ tylko jedn¹ instancje)
 	Window& operator=(const Window&) = delete;			//Wy³¹czenie operatora '=' dla tej klasy
 	void SetTitle(const std::string ntitle);
+	static std::optional<int> ProcessMessages();
 private:
 	static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 	static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
