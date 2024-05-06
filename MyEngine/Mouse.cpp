@@ -5,6 +5,7 @@
 //  Mouse class code file
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "Mouse.h"
+#include <Windows.h>
 
 std::pair<int, int> Mouse::GetPos() const noexcept
 {
@@ -131,5 +132,21 @@ void Mouse::TrimBuffer() noexcept
 	while (mousebuffer.size() > mousebufferSize)
 	{
 		mousebuffer.pop();
+	}
+}
+
+//Better wheel control (you can just check if <0 or >0)
+void Mouse::OnWheelCarry(int xn, int yn, int delta) noexcept
+{
+	wheelCarry+=delta;
+	while (wheelCarry >= WHEEL_DELTA)
+	{
+		wheelCarry -= WHEEL_DELTA;
+		OnWheelUp(xn, yn);
+	}
+	while (wheelCarry <= -WHEEL_DELTA)
+	{
+		wheelCarry += WHEEL_DELTA;
+		OnWheelDown(xn, yn);
 	}
 }

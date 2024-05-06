@@ -174,7 +174,6 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
             }
         }
 
-        ms.OnMouseMove(pt.x, pt.y);
         break;
     case WM_LBUTTONDOWN:
         pt = MAKEPOINTS(lParam);
@@ -194,14 +193,8 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
         break;
     case WM_MOUSEWHEEL:
         pt = MAKEPOINTS(lParam);
-        if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
-        {
-            ms.OnWheelDown(pt.x, pt.y);
-        }
-        else if (GET_WHEEL_DELTA_WPARAM(wParam) > 0)
-        {
-            ms.OnWheelUp(pt.x, pt.y);
-        }
+        int delta = GET_WHEEL_DELTA_WPARAM(wParam);
+        ms.OnWheelCarry(pt.x, pt.y, delta);
         break;
     /////////////// Mouse End ///////////////
     }

@@ -97,6 +97,7 @@ private:
 	void OnWheelUp(int xn, int yn) noexcept;
 	void OnWheelDown(int xn, int yn) noexcept;
 	void OnMouseMove(int xn, int yn) noexcept;
+	void OnWheelCarry(int xn, int yn, int delta) noexcept;
 	void OnMouseEnter() noexcept;
 	void OnMouseLeave() noexcept;
 	void TrimBuffer() noexcept;
@@ -107,5 +108,6 @@ private:
 	bool leftIsPressed = false;
 	bool rightIsPressed = false;
 	bool isInWindow = false;
+	int wheelCarry = 0;
 	std::queue<Event> mousebuffer;
 };
