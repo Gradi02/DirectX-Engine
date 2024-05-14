@@ -140,6 +140,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="exceptionsHandler.cpp" />
+    <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="EngineTimer.h" />
     <ClInclude Include="exceptionsHandler.h" />
+    <ClInclude Include="Graphic.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="resource.h" />

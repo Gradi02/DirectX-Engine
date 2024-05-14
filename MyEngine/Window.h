@@ -8,8 +8,10 @@
 #include "exceptionsHandler.h"
 #include "Keyboard.h"
 #include "Mouse.h"
+#include "Graphic.h"
 #include <string>
 #include <optional>
+#include <memory>
 
 //Declaration of window class
 class Window
@@ -50,6 +52,7 @@ public:
 	Window& operator=(const Window&) = delete;			//Wy³¹czenie operatora '=' dla tej klasy
 	void SetTitle(const std::string ntitle);
 	static std::optional<int> ProcessMessages();
+	Graphic& Gfx();
 private:
 	static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 	static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
@@ -61,6 +64,7 @@ private:
 	int width;
 	int height;
 	HWND hWnd;
+	std::unique_ptr<Graphic> pGfx;
 };
 
 //macro for bet exceptions
