@@ -80,6 +80,9 @@ Window::Window(int width, int height, const char* name) noexcept : width(width),
 
     //Show window
     ShowWindow(hWnd, SW_SHOWDEFAULT);                      //okna domyœlnie nie widaæ trzeba je pokazaæ funkcj¹, drugi argument te¿ mo¿na zmieniæ
+
+    //create Graphic Obj
+    pGfx = std::make_unique<Graphic>(hWnd);
 }
 
 Window::~Window()
@@ -134,6 +137,11 @@ std::optional<int> Window::ProcessMessages()
     }
 
     return{};
+}
+
+Graphic& Window::Gfx()
+{
+    return *pGfx;
 }
 
 LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept

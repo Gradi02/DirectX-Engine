@@ -25,15 +25,9 @@ int App::Go()   //wykonuje siê na starcie programu
 
 void App::Frame()
 {
-    const float t = timer.Peak();
-    static float lastT = 0;
-    if (t - lastT >= 0.1f)
-    {
-        std::ostringstream oss;
-        oss << "Run Time: " << t;
-        wnd.SetTitle(oss.str());
-        lastT = t;
-    }
+    const float c = sin(timer.Peak()) / 2.0f + 0.5f;
+    wnd.Gfx().ClearBuffer(c, c, c);
+    wnd.Gfx().EndFrame();
 }
 
 
