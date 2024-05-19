@@ -19,15 +19,26 @@ class Window
 public:
 	class Exceptions : public EngineExceptions
 	{
+		using EngineExceptions::EngineExceptions;
 	public:
-		Exceptions(int line, const char* file, HRESULT hrN) noexcept;
+		static std::string TranslateErrorCode(HRESULT hr) noexcept;
+	};
+	class HrExceptions : public Exceptions
+	{
+	public:
+		HrExceptions(int line, const char* file, HRESULT hrN) noexcept;
 		const char* what() const noexcept override;
 		virtual const char* GetType() const noexcept override;
-		static std::string TranslateErrorCode(HRESULT hr) noexcept;
 		HRESULT GetErrorCode() const noexcept;
 		std::string GetErrorString() const noexcept;
 	private:
 		HRESULT hr;
+	};
+	class NoGfxExceptions : public Exceptions
+	{
+	public: 
+		using Exceptions::Exceptions;
+		const char* GetType() const noexcept override;
 	};
 private:
 	//Singleton for Window Class
@@ -68,5 +79,6 @@ private:
 };
 
 //macro for bet exceptions
-#define ENG_EXCEPT(hr) Window::Exceptions(__LINE__,__FILE__,hr)
-#define ENG_LAST_EXCEPT() Window::Exceptions(__LINE__,__FILE__,GetLastError())
+#define ENG_EXCEPT(hr) Window::HrExceptions(__LINE__,__FILE__,hr)
+#define ENG_LAST_EXCEPT() Window::HrExceptions(__LINE__,__FILE__,GetLastError())
+#define ENG_NOGFX_EXCEPT() Window::NoGfxExceptions(__LINE__,__FILE__)
