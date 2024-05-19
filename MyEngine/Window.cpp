@@ -141,6 +141,10 @@ std::optional<int> Window::ProcessMessages()
 
 Graphic& Window::Gfx()
 {
+    if (!pGfx)
+    {
+        throw ENG_NOGFX_EXCEPT();
+    }
     return *pGfx;
 }
 
@@ -230,10 +234,10 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 
 
 //Engine Error Exceptions Stuffs
-Window::Exceptions::Exceptions(int line, const char* file, HRESULT hrN) noexcept
-    : EngineExceptions(line, file), hr(hrN) {}
+Window::HrExceptions::HrExceptions(int line, const char* file, HRESULT hrN) noexcept
+    : Exceptions(line, file), hr(hrN) {}
 
-const char* Window::Exceptions::what() const noexcept
+const char* Window::HrExceptions::what() const noexcept
 {
     std::ostringstream oss;		//coœ jak string builder w javie
     oss << GetType() << std::endl
@@ -244,9 +248,14 @@ const char* Window::Exceptions::what() const noexcept
     return whatBuffer.c_str();			//zwraca pointer na const char*
 }
 
-const char* Window::Exceptions::GetType() const noexcept
+const char* Window::HrExceptions::GetType() const noexcept
 {
     return "Engine Window Exception";
+}
+
+const char* Window::NoGfxExceptions::GetType() const noexcept
+{
+    return "Graphic Exception";
 }
 
 std::string Window::Exceptions::TranslateErrorCode(HRESULT hr) noexcept
@@ -269,12 +278,12 @@ std::string Window::Exceptions::TranslateErrorCode(HRESULT hr) noexcept
     return errorStr;
 }
 
-HRESULT Window::Exceptions::GetErrorCode() const noexcept
+HRESULT Window::HrExceptions::GetErrorCode() const noexcept
 {
     return hr;
 }
 
-std::string Window::Exceptions::GetErrorString() const noexcept
+std::string Window::HrExceptions::GetErrorString() const noexcept
 {
     return TranslateErrorCode(hr);
 }

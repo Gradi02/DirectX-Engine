@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="dxerr.cpp" />
     <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="exceptionsHandler.cpp" />
     <ClCompile Include="Graphic.cpp" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="dxerr.h" />
     <ClInclude Include="EngineTimer.h" />
     <ClInclude Include="exceptionsHandler.h" />
     <ClInclude Include="Graphic.h" />

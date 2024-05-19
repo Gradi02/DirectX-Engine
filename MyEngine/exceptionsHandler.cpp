@@ -13,7 +13,7 @@ EngineExceptions::EngineExceptions(int lineN, const char* fileN) noexcept
 
 const char* EngineExceptions::what() const noexcept
 {
-	std::ostringstream oss;		//coœ jak string builder w javie
+	std::ostringstream oss;				//string builder
 	oss << GetType() << std::endl << GetOriginString();			//zbiera info
 	whatBuffer = oss.str();				//zapisuje info do buffera by go nie zgubiæ
 	return whatBuffer.c_str();			//zwraca pointer na const char*
