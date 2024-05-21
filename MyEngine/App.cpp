@@ -27,6 +27,7 @@ void App::Frame()
 {
     const float c = sin(timer.Peak()) / 2.0f + 0.5f;
     wnd.Gfx().ClearBuffer(c, c, c);
+    wnd.Gfx().DrawTestTriangle();
     wnd.Gfx().EndFrame();
 }
 

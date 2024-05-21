@@ -2,6 +2,7 @@
 #include "WinCustomLib.h"
 #include "exceptionsHandler.h"
 #include <vector>
+#include "wrl.h"
 #include <d3d11.h>
 
 class Graphic
@@ -47,16 +48,18 @@ public:
 	Graphic(HWND hWnd);
 	Graphic(const Graphic&) = delete;
 	Graphic& operator=(const Graphic&) = delete;
-	~Graphic();
+	~Graphic() = default;
 	void EndFrame();
 	void ClearBuffer(float red, float green, float blue) noexcept
 	{
 		const float color[] = { red,green,blue,1.0f };
-		pContext->ClearRenderTargetView(pTarget, color);
+		pContext->ClearRenderTargetView(pTarget.Get(), color);
 	}
+	void DrawTestTriangle();
+
 private:
-	ID3D11Device* pDevice = nullptr;
-	IDXGISwapChain* pSwap = nullptr;
-	ID3D11DeviceContext* pContext = nullptr;
-	ID3D11RenderTargetView* pTarget = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Device> pDevice = nullptr;
+	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwap = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTarget = nullptr;
 };
