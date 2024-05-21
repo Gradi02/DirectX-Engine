@@ -16,6 +16,9 @@
     <Filter Include="Pliki inline">
       <UniqueIdentifier>{29d5db67-f31b-4b50-8ab1-56ccbbdcaac0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Shaders">
+      <UniqueIdentifier>{2313ead7-4666-4827-86c6-4445788f7634}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -90,5 +93,13 @@
     <ResourceCompile Include="MyEngine.rc">
       <Filter>Pliki zasobów</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>Pliki nagłówkowe\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>Pliki nagłówkowe\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
